@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "subconsole"
+version = "0.1.0 Alpha Test"
+description = "Extendable shell like GUI for collecting command line interactions"
+authors = [{ name = Nathan LaFrazia, email = "nlafr@github.com" }]
+license = "GPL v3"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "PySide6>=6.10.1"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+["tool.setuptools.packages.find]
+where = ["src"]
