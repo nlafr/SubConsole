@@ -9,7 +9,7 @@ A minimal command line interface which creates an internal *SubApplication* temp
 
 Developed in Windows 11, Python 3.13.9, built on PySide6 6.10.1
 
-Ubuntu deployment test upcoming...
+Clone deployment test partially successful in Ubuntu 24.04.1 Failures are limited to window features which may be inconvenient however do not affect the central functionality and features of the application. The Window Drag icon fails to function, effectively limiting the window to its starting position or full screen mode. Top Window and Opacity features fail to perform, though this should be supported by GNOME. Some Qt/GNOME compatibility issues are known, particularly involving window frames, and these features may be not be compatible or will require additional configurations. 
 
 ## Quick Start
 Ensure Python3.10 or higher is installed, latest stable is recommended: 
@@ -113,7 +113,7 @@ Though there is room for expansion and improvement within the "kernel" of SubCon
 
 If project adoption exceeds expectations and a community forms around requested improvments, volunteer maintainers will be sought and provided with a greater volume of documentation and source annotations.
 
-It is worthy to note *unit tests* are still *not implemented* as cross-platform testing has been prioritized (the repository has been made public in Alpha Test to facilitate a clone test for Ubuntu) and will likely not appear until Beta, along with a few essential SubApplications. It's safe to assume that the repo will not be ready for contribution until that time.
+It is worthy to note *unit tests* are still *not implemented* as cross-platform testing has been prioritized and will likely not appear until Beta, along with a few essential SubApplications. It's safe to assume that the repo will not be ready for contribution until that time.
 
 Considering the apparent direction of the project, there will be two repositories:
 - The **SubConsole Shell** which will contain no SubApplications (excepting help and hello applications, or future essential utilities) 
