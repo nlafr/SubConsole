@@ -9,7 +9,7 @@ A minimal command line interface which creates an internal *SubApplication* temp
 
 Developed in Windows 11, Python 3.13.9, built on PySide6 6.10.1
 
-Clone deployment test partially successful in Ubuntu 24.04.1 Failures are limited to window features which may be inconvenient however do not affect the central functionality and features of the application. The Window Drag icon fails to function, effectively limiting the window to its starting position or full screen mode. Top Window and Opacity features fail to perform, though this should be supported by GNOME. Some Qt/GNOME compatibility issues are known, particularly involving window frames, and these features may be not be compatible or will require additional configurations. 
+Window positioning issues in Ubuntu 24.04.1 test. See Compatibility.
 
 ## Quick Start
 Ensure Python3.10 or higher is installed, latest stable is recommended: 
@@ -60,7 +60,7 @@ Windows:
 Linux/Mac:
 >python3 subconsole.py
 
-From the *SubConsole* command-line, type `help` and press enter to learn more about using and building within Subconsole.
+From the *SubConsole* command-line, type `help` and press enter to learn more about using and building within SubConsole.
 
 You can also proceed to the `docs` folder for more instructions: `USER.md` Introduces the interface and project architecture, `subapplication.md` provides documentation on how to build your own SubApplications. 
 
@@ -98,9 +98,14 @@ Check out the **Documentation:**
 >https://doc.qt.io/qtforpython-6/index.html
 
 ### Compatibility
+
 **Qt** uses system resources to create interfaces, virtual systems (WSL and remote options like *codespaces*) and systems without window managers ***will face difficulty*** using the project without modification and other unique preparations.
 
 **Conda** environmets and packages as well as **Matplotlib** packages are also known to have conflicts with **Qt**, and this experience is widely reported.
+
+**Ubuntu** user experience may differ. See below.
+- Clone deployment test partially successful in Ubuntu 24.04.1. Failures are limited to window features which may be inconvenient however do not affect the central functionality and features of the application. The Window Drag icon fails to function, effectively limiting the window to its starting position or full screen mode. Top Window and Opacity features fail to perform, though this should be supported by GNOME. Some Qt/GNOME compatibility issues are known, particularly involving window frames, and these features may be not be compatible or will require additional configurations. 
+
 
 ## License
 This project is ***free software*** for you to use or modify as you choose, shared under the **GNU General Public License Version 3**, which requires all derivitave works to be **shared under the same license**. `See LICENSE.md`.
@@ -108,29 +113,29 @@ This project is ***free software*** for you to use or modify as you choose, shar
 ## Additional Documentation
 This README and the HELP SubApplication serve as a quick-start guide. Additional documentation can be found in the `docs` folder. `USER.md` provides a light introduction to the interface and overview of SubConsole's structure, while `subapplication.md` introduces the SubApplication class and creating your own SubApplications, representing the primary utility of the package. Later versions will aspire to provide a complete set of documentation for those who wish to expand or modify the package, though this is likely the smaller portion of this package's users.
 
-## Contribution (Not Implemented, Provided in the Event of Interest)
+## Development and Contribution
 Though there is room for expansion and improvement within the "kernel" of SubConsole, it's expansion will have secondary priority to providing a reproduceable environment for shareable SubApplications. This means that the UI and shell functionality are unlikely to change unless such changes do not interfere with existing SubApplication methods or shell interactions. 
 
 If project adoption exceeds expectations and a community forms around requested improvments, volunteer maintainers will be sought and provided with a greater volume of documentation and source annotations.
 
-It is worthy to note *unit tests* are still *not implemented* as cross-platform testing has been prioritized and will likely not appear until Beta, along with a few essential SubApplications. It's safe to assume that the repo will not be ready for contribution until that time.
+*Early Adopters* should note the following development and contribution strategy has been changed from the initial commit.
 
-Considering the apparent direction of the project, there will be two repositories:
-- The **SubConsole Shell** which will contain no SubApplications (excepting help and hello applications, or future essential utilities) 
-- The **Community Console** which will contain a *curated* collection of contributions, which users can clone whole and cherry-pick which community applications to use in their own SubConsole.
-This approach was chosen for it's relative simplicity for the benefit for the majority of this repo's projected audience, and alignment with this project's philosophy of resource consolidation. 
+A `contribution` folder will appear in `docs` on the *Alpha* branch when *this* repository is ready for contribution. This will also require the completion of documentation and unit testing. This line will also be edited at that time.
 
-### Community Console 
-- Only SubApplications and supporting modules within the `scripts` folder will be accepted.
-- Due to default naming conventions, each app *alias* must be uppercase and underscores only. Therefore, namespaces are a limitation, so please check what's already used in the `community` folder, as well as `apps` and `scripts`, prior to building your contribution.
-- A community folder will exist in the community repo, you must provide a markdown (README) explaining your SubApplication, using the *alias* as the name of your file ex: `MY_APP.md`. This allows others to see used namespaces at a glance, and outlining additional structures in your markdown can help other contributiors plan projects and avoid name collisions.
-- Given the above standard, if you would like to make a contribution, start by providing a markdown in the `community` folder, and that will reserve the namespaces in the `scripts` and `apps` folders for your project.
-- The addition of selective dependencies is being carefully considered for future revisions, however initially limit contribution dependencies to PySide6 Community Edition packages, and of course, Python's native libraries. In the meantime, those who wish to add dependencies to the module are encouraged to host a *fork*.
-- SubApplication submissions will be reviewed for content and safety. Apps may be rejected for questionable content (keep in mind the educational audience), suspicious activity, and of course, significant bugs or runtime errors. While safety and functionality are paramount, remember that **GPL-v3 allows redistribution and modification** under the terms of the license, therefore you are free to **create and host a *fork* under the same license**, containing SubApplications intended for any audience you choose.
+Additional features to enrich the ecosystem have been prioritized over the public contribution development course for the time being, as these features should establish the desired intent and direction of the project.
 
+A registry-type system is now being considered for publicly sharing SubApplication extensions, which will provide a repository indexing a collection of disparate public repositories. The inclusion of native features for discovery and install is being explored. 
 
-### Pull Instructions
-Instructions will be found here in the community repo. (NOT IMPLEMENTED - ARRIVAL TBD)
+### Core Concepts
+SubConsole intends to provide: 
+- A platform for easily creating interactions between custom built tasks and interfaces.
+- An environment suitable for peer collaboration and development.
+- Prioritied focus on "small-development" scenarios such as personalized toolkits, classrooms, and private labs.
+
+### Inbound
+Look here for the latest features to expect on *Alpha*:
+- **In design:** Context services for local and LAN usage. A persistent context server application with a defined set of services accessible through the SubApplication API. Assumes local use or unexposed LAN. Services will focus on file transfer and storage (FTP, Mail). Continuous operations (like TCP servers) will be accesible as a *context*, each with its own state management and port contract. An extensible "context definitions" discovery library is also planned. This description only scrapes the surface of the implementation, this feature will take some time in development and will be prioritized over other development courses. 
+
 
 
 ## Author
