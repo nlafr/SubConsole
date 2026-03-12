@@ -332,14 +332,15 @@ class SubShell(QObject):
     
 
     @ Slot()
-    def showWelcomeMessageAnimation(self, seqlen=28):
+    def showWelcomeMessageAnimation(self, consume=None):
         time = QTimer()
         rate = 50
-        message = ("//..........................")
-        if seqlen > len(message):
-            seq = len(message)
+        if consume == None:
+            message = ("//..........................")
         else:
-            seq = seqlen
+            message = str(consume)
+        seq = len(message)
+
         messages = [message[i:] for i in range(seq)]
         values = [(i * rate) for i in range(seq)]
 
