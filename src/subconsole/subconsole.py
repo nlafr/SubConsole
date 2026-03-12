@@ -60,9 +60,21 @@ class SubConsoleGUI(QMainWindow):
         self.window_opacity = self.settingsManager.windowOpacity
         self.update_window_opacity = self.settingsManager.windowOpacity
         if self.settingsManager.uiAlwaysTopWindow:
-            self.setWindowFlags(Qt.FramelessWindowHint  | Qt.WindowStaysOnTopHint)
+            if len(sys.argv) > 1:
+                if "-f" in sys.argv:
+                    self.setWindowFlags(Qt.WindowStaysOnTopHint)
+                else:
+                    self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
+            else:
+                self.setWindowFlags(Qt.FramelessWindowHint  | Qt.WindowStaysOnTopHint)
         else:
-            self.setWindowFlags(Qt.FramelessWindowHint)
+            if len(sys.argv) > 1:
+                if "-f" in sys.argv:
+                    pass
+                else:
+                    self.setWindowFlags(Qt.FramelessWindowHint)
+            else:
+                self.setWindowFlags(Qt.FramelessWindowHint)
         self.setWindowOpacity(self.window_opacity)
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         self.size_policy = QSizePolicy(
