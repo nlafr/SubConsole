@@ -33,10 +33,11 @@ causes an upper margin graphics offset.
 - Status: This issue is *open* and a correction plan has not been formed.
 
 <br/><br/>
-## Negative Sizes - Widgets with Terminal / Console Ratio = 1 - `checkout`
+## Negative Sizes - Widgets with Terminal / Console Ratio = 1 - `closed`
 - Issue Origin: Negative sizes error when using the SubApplication
 renderWidget method and console ratio is set to 1.
-- Status: A correction is planned in the subapplication namespace. 
+- Status: Console ratio is now automatically adjusted if the ratio is set to 1.
+This behavior is enforced over user override commands. 
 
 <br/><br/><br/><br/>
 ## END as of 3/12/26

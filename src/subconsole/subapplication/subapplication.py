@@ -148,7 +148,10 @@ class SubApplication(QObject):
         if self._activeViewerObject != None:       
 
             if self._viewerType == "widget":
-
+                # 0.1.3 Resize terminal if ratio 1 (negative y) with renderWidget
+                if self.windowRect[3] < 0:
+                        self.sendShell(f"{self.setOpCode} {self.consoleOpCode} 2")
+                        self.echo(f"{self.consoleOpCode} resize: boundaryChanged: _viewerType: widget")
                 self._activeViewerObject.setMinimumSize(self.windowRect[2], self.windowRect[3])
                 self._interiorWidget.setMinimumSize(self.windowRect[2], self.windowRect[3])
                 self._interiorWidget.setMaximumSize(self.windowRect[2], self.windowRect[3])
@@ -695,6 +698,10 @@ class SubApplication(QObject):
         :param self: SubApplication
         :param widget: QtWidget Object.
         """
+        # 0.1.3 Resize terminal if ratio 1 (negative y) with renderWidget
+        if self.windowRect[3] < 0:
+            self.sendShell(f"{self.setOpCode} {self.consoleOpCode} 2")
+            self.echo(f"{self.consoleOpCode} resize: renderWidget: windowRect[3]")
         self._viewerType = "widget"
         if self._activeViewerObject != None:
             prior_object = True

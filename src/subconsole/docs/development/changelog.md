@@ -11,3 +11,8 @@ Record of noteworthy package changes.
 <br/>&emsp;*location*: core/subshell.py
 
 - Documentation added, including issues, roadmap, and changelog  
+
+## 3/13/26:
+- Prevent negative size error involving consoleRatio 1 and renderWidget by forcing ratio of 2
+<br/>&emsp;*purpose*: Prevent removal / Allow view area positive space for rendered widgets
+<br/>&emsp;*location*: subapplication/subapplication.py
