@@ -3,11 +3,13 @@ This document details known issues with the project.
 
 Issues can be:
 - `open` : An implementation to correct this issue is not in progress
+- `scheduled`: A plan is in place to correct the issue
 - `checkout`: This issue has been checked out
 - `closed`: The issue has been resolved
 - `adapted`: An implementation has been provided to accommodate the issue
 
-<br/><br/>
+<br/>
+
 ## Drag Window Icon Fails - Ubuntu/GNOME - `adapted`
 - Issue Origin: Window Drag fails with frameless application in Ubuntu OS. 
 Qt Frameless / GNOME compatibility issues are known.
@@ -23,21 +25,30 @@ without following SubConsole's internal shutdown protocol.
 
 ## Window Opacity Fails - Ubuntu/GNOME - `open`
 - Issue Origin: Window opacity settings not reflected in Ubuntu, research indicates
-GNOME supports window opacity, potentially related to test hardware.
+GNOME supports window opacity.
 - Status: This issue remains *open* and requires further investigation.
 
-<br/><br/>
+<br/>
+
+## Top Window Fails - Ubuntu/GNOME = `open`
+- Issue Origin: Top window behavior not performing in Ubuntu, should be supported.
+- Status: This issue is *open* and requires further investigation
+
+<br/>
+
 ## Upper Margin Graphics - Terminal / Console Ratio = 1 - `open`
 - Issue Origin: Initializing SubConsole with the terminal or console ratio set to 1
 causes an upper margin graphics offset.
 - Status: This issue is *open* and a correction plan has not been formed.
 
-<br/><br/>
+<br/>
+
 ## Negative Sizes - Widgets with Terminal / Console Ratio = 1 - `closed`
 - Issue Origin: Negative sizes error when using the SubApplication
 renderWidget method and console ratio is set to 1.
 - Status: Console ratio is now automatically adjusted if the ratio is set to 1.
 This behavior is enforced over user override commands. 
 
-<br/><br/><br/><br/>
+<br/><br/><br/>
+
 ## END as of 3/12/26

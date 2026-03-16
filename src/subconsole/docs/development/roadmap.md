@@ -17,19 +17,17 @@ will likely be implemented to simplify discovery and installation. Design detail
 fully explored.
 
 ## Contribution
-The repository is in preparation to accomodate contribution. Look forward to `contribution.md` 
-in the development folder. Run `git branch` for a preview of the checkout structure.
+The repository is in preparation to accomodate contribution. See `.github/CONTRIBUTING.md` for more details.
 
 
 ## Extended Development
 The main interface and command line interactions are unlikely to change significantly 
 after the initial version.
 
-The variety of case uses presented by personalized development implies a continued extension
-of the functionality of the SubApplication class. Unlike the render methods, additional methods 
-will not focus on abstractions to Qt, rather extend the system-wide functionality of 
-SubApplications.
+Continued development will driven largely by community input and involvement but should
+focus on the *core concepts* outlined above.
 
-Plans for a socketserver utility have been moved to a unique repository. When ready, SubApplications
-will be given compatible client methods.  
+The SubApplication class should be considered the target of feature expansion, while changes to 
+the core should be made conservatively, with good cause, and the utmost attention to
+backwards compatibility (must not break existing SubApplications).
 
