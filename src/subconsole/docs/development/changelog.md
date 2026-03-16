@@ -3,6 +3,13 @@ Record of noteworthy package changes.
 
 Recent changes are at the top.
 
+## 3/16/26
+- Console height and prompt text requests now bypass `IGNORE` flag behavior, as these are considered essential SubApplication interface utilities
+- Arguments can now be assigned to appRunArgument after the ignore flag (and any future flags) `RUN MYAPP IGNORE MYARG`
+<br/>&emsp;*purpose*: Persistent SubApp access to terminal and prompt control, add user control and functionality
+<br/>&emsp;*location*: core/subshell.py
+
+
 ## 3/15/26:
 - Added `.github/`, containing CONTRIBUTING.md, adjust roadmap reference  
 - README trimmed for clarity
