@@ -2,7 +2,7 @@
 A minimal command line interface which creates an internal *SubApplication* template for wrapping multiple CLI or PySide6 interactions into a single *shell-like* runtime.
 
 ### VERSION
-**0.1.3 Alpha Test** 
+**0.1.4 Alpha Test** 
 - Command-based CLI customization
 - SubApplication API renders raw text/HTML or QWidget
 - SubApplication access to customization commands 
