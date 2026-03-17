@@ -5,9 +5,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "subconsole"
-version = "0.1.3 Alpha Test"
+version = "0.1.4 Alpha Test"
 description = "Extendable shell like GUI for collecting command line interactions"
-authors = [{ name = Nathan LaFrazia, email = "nlafr@github.com" }]
+authors = [{ name = Nathan LaFrazia, email = "nlafr.dev@proton.me" }]
 license = "GPL v3"
 readme = "README.md"
 requires-python = ">=3.10"

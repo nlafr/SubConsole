@@ -43,8 +43,12 @@ class HelpSubApplication(SubApplication):
         
     
     def startupActions(self):
+        # As of v0.1.4 SubApplications ignore input while rendering
+        # Use of ignoreInput no longer required, it's usage
+        # conventions are retained as notes in examples.
+
         # Ignoring input until 'Help...' message is finished
-        self.ingoreInput()
+        #self.ingoreInput()
 
         # We build this below to determine
         # a font size offset for full vs. 1/4 screen
@@ -82,7 +86,7 @@ class HelpSubApplication(SubApplication):
         # the total wait time needed to complete your actions.
         # If using animations with renderText, take the sum of all 'time'
         # values returned by renderText.
-        self.acceptInput(time + 700)
+        #self.acceptInput(time + 700)
 
 
     # Override viewerChange to handle window size changes

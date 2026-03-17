@@ -422,8 +422,11 @@ class SubShell(QObject):
                 safe_flag = flag
             else:
                 safe_flag = flag.upper()
-            if safe_flag == self._flagIgnoreUiChanges:
+            # v0.1.4 Recognized flags will be consumed, with an additional space from the left
+            # The remainder of the string will be assigned to appRunArgument
+            if safe_flag.startswith(self._flagIgnoreUiChanges):
                 self._ignoreAppRequests = True
+                self._appRunArgument = flag[len(self.flagIgnoreUiChanges) + 1:]
             else:
                 self._appRunArgument = flag
         self.forwardConsoleControl.emit(command)
@@ -498,9 +501,24 @@ class SubShell(QObject):
             safe_args = split_command[1]
             args = re.split(" ", command, maxsplit=1)[1]
         if self._subApplicationHasConsole:
-            if handler != self.endOperationRequest:
-                if self._ignoreAppRequests:
-                    return
+            # v0.1.4 App Run Flag: Ignore: Fixes/Improvements
+            # App/User console height and prompt text requests bypass ignoreAppRequests
+            if self._ignoreAppRequests:
+                ignore = f"${self.flagIgnoreUiChanges}::{safe_command}"
+                if handler == self.endOperationRequest: 
+                    if safe_command.endswith(f"{self._consoleControlApplication}") > 0:
+                        self.restoreSettings.emit()
+                    else:
+                        pass           
+                elif handler == self.uiChangeOptionRequest:
+                    if safe_command.find(f"{self.uiConsoleHeightOpCode}") > 0:
+                        pass
+                    elif safe_command.find(f"{self._uiPromptTextOpCode}") > 0:
+                        pass
+                    else:
+                        return self.responseIssued.emit(ignore)
+                else:
+                    return self.responseIssued.emit(ignore)
 
         match handler:
             case self.endOperationRequest:
