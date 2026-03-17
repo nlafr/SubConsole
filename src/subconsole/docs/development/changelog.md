@@ -3,6 +3,17 @@ Record of noteworthy package changes.
 
 Recent changes are at the top.
 
+## 3/17/26
+- End operation override commands are now re-sent to SubApplication as a regular command to ensure proper SubApplication shutdown behavior, which previously would malfunction with END type overrides
+- Blocks made redundant or ineffective by this change have been removed
+<br/>&emsp;*purpose*: Ensure viewer objects removed and settings restored when using override to end SubApplication
+<br/>&emsp;*location*: core/subshell.py; blocks removed subapplication/subapplication.py
+
+- Fix runArgument persistence bug. Assignment varaible was previously not reset on SubApplication exit
+<br/>&emsp;*purpose*: Correct operation of runArgument
+<br/>&emsp;*location*: subconsole.py
+
+
 ## 3/16/26
 - Console height and prompt text requests now bypass `IGNORE` flag behavior, as these are considered essential SubApplication interface utilities
 - Arguments can now be assigned to appRunArgument after the ignore flag (and any future flags) `RUN MYAPP IGNORE MYARG`

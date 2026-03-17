@@ -193,10 +193,6 @@ class SubApplication(QObject):
             safe_command = allocated.upper()
         match safe_command:
             case self._stopCode:
-
-                self.sendShellCommand.emit(
-                    f"${self.applicationAlias}$" + self.settingsManager.shellUiChangeOptionRequestOpCode + " " + self.settingsManager.shellUiRestoreLastSaveOpCode
-                )
                 # 0.1.4 clearViewer replaced previous block
                 self.clearViewer()
                 self._hasConsole = False
@@ -212,9 +208,8 @@ class SubApplication(QObject):
                     f"${self.applicationAlias}$" + allocated
                 )
             case _:
-                if safe_command.startswith(self.settingsManager.headApplicationAlias + "$"):
+                pass
 
-                    self.sendShellCommand.emit(allocated)
         return self.commandInput(safe_command, allocated)
 
 ### @ PROPERTIES

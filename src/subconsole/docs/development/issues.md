@@ -43,6 +43,18 @@ causes an upper margin graphics offset.
 
 <br/>
 
+## SubApplication appArgument - Value persistence bug - `closed`
+- Issue Origin: Values persist from previous SubApplication appArgument and are assigned to subsequently run SubApplications.
+- Status: Corrected in subconsole.py, assignment value now resets.
+
+<br/>
+
+## End SubApplication Override - Viewer / Settings not reset on END APP - `closed`
+- Issue Origin: Using end operation overrides "subconsole$end myapp" would cause the SubApplication to close without clearing the viewer or restoring settings.
+- Status: End override commands now forward a non-override to the SubApplication, ensuring proper ending behavior.  
+
+<br/>
+
 ## Negative Sizes - Widgets with Terminal / Console Ratio = 1 - `closed`
 - Issue Origin: Negative sizes error when using the SubApplication
 renderWidget method and console ratio is set to 1.
