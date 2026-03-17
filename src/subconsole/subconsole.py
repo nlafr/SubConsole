@@ -203,10 +203,8 @@ class SubConsoleGUI(QMainWindow):
                 app.sendShellCommand.connect(self.sub_shell.receiveSubApplicationRequest)
                 app.appStopped.connect(self.manageConsoleControl)
                 
-            if app._activeViewerObject != None:
-                delete_later = app._activeViewerObject
-                app._activeViewerObject = None
-                delete_later.deleteLater()
+            # v0.1.4 clearViewer replaces previous block
+            app.clearViewer()
             app._runArgument = self.sub_shell.appRunArgument
             app.cleanLoad()
 

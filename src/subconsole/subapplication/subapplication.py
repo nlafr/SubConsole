@@ -49,6 +49,9 @@ class SubApplication(QObject):
         
         self._activeViewerObject = None
         self._viewerType = None
+
+        self._busyRendering = False
+        self._callbackViewer = False
         
         self._runArgument = None
         self._ignoreInput = False
@@ -179,6 +182,10 @@ class SubApplication(QObject):
         if self._ignoreInput:
             self.echo(f"{self._waitMessage}")
             return
+        # 0.1.4 Spam input protection, ignores input while rendering
+        elif self._busyRendering:
+            self.echo(f"{self._waitMessage}")
+            return
 
         if self._caseSensitiveCommands:
             safe_command = allocated
@@ -190,7 +197,8 @@ class SubApplication(QObject):
                 self.sendShellCommand.emit(
                     f"${self.applicationAlias}$" + self.settingsManager.shellUiChangeOptionRequestOpCode + " " + self.settingsManager.shellUiRestoreLastSaveOpCode
                 )
-                self.removeActiveViewer()
+                # 0.1.4 clearViewer replaced previous block
+                self.clearViewer()
                 self._hasConsole = False
                 return self.sendShellCommand.emit(
                     f"${self.applicationAlias}$" + allocated
@@ -205,7 +213,7 @@ class SubApplication(QObject):
                 )
             case _:
                 if safe_command.startswith(self.settingsManager.headApplicationAlias + "$"):
-                    
+
                     self.sendShellCommand.emit(allocated)
         return self.commandInput(safe_command, allocated)
 
@@ -591,15 +599,10 @@ class SubApplication(QObject):
         :param self: SubApplication: QObject
         :param center: bool: Centers top of text on y axis if true
         """
+        # 0.1.4 clearViewer replaced previous blocks
+        self.clearViewer()
         self._viewerType = "text"
-        
-        if self._activeViewerObject != None:
-            prior_object = True
-            self.removeActiveViewer()
-        else:
-            prior_object = False
-        if prior_object:
-            delete_object = self._activeViewerObject
+
         self._activeViewerObject = QGraphicsTextItem("")
         color = QColor(self._appTextColor)
         self._activeViewerObject.setDefaultTextColor(color)
@@ -614,8 +617,6 @@ class SubApplication(QObject):
         self._activeViewerObject.setTextWidth(width - self._xPadding)
         if not interact:
             self._activeViewerObject.setTextInteractionFlags(Qt.NoTextInteraction)
-        if prior_object:
-            delete_object.deleteLater()
         calculated = (xpos + self._xPadding, ypos + self._yPadding)
         if center:
             text_rect = self._activeViewerObject.boundingRect()
@@ -657,19 +658,24 @@ class SubApplication(QObject):
 
         if animate and len(text) < 250:
             rate = timeout
-
+            self._busyRendering = True
             values = [(i * rate) for i in range(len(text) + 2)]           
             for i in range(len(text) + 1):
                 self.timer.singleShot(
                    values[i], lambda i=i: self._activeViewerObject.setPlainText(text[:i])
-                )               
+                )
+            self.timer.singleShot(values[-1], self.busyFalse)
+            if self._callbackViewer:
+                self.timer.singleShot(values[-1] + 20, self.clearViewer)
+                self._callbackViewer = False               
             return values[-1]
 
         else:       
             self._activeViewerObject.setPlainText(text)
             return 0        
 
-        
+    def busyFalse(self):
+        self._busyRendering = False  
 
     def renderHTML(self, html):
         """
@@ -680,7 +686,7 @@ class SubApplication(QObject):
         :param self: SubApplication: QObject
         :param html: str: HTML to render
         """
-        
+        self.clearViewer()
         self.addTextItemToScene()
         self._viewerType = "HTML"
         self._activeViewerText = html
@@ -702,20 +708,36 @@ class SubApplication(QObject):
         if self.windowRect[3] < 0:
             self.sendShell(f"{self.setOpCode} {self.consoleOpCode} 2")
             self.echo(f"{self.consoleOpCode} resize: renderWidget: windowRect[3]")
+        # 0.1.4 clearViewer replaced previous blocks
+        self.clearViewer()
         self._viewerType = "widget"
-        if self._activeViewerObject != None:
-            prior_object = True
-            self.removeActiveViewer()
-        else:
-            prior_object = False
-        if prior_object:
-            delete_object = self._activeViewerObject
 
         self._interiorWidget = widget                
         self._interiorWidget.setMinimumSize(self.windowRect[2], self.windowRect[3])
         self._interiorWidget.setMaximumSize(self.windowRect[2], self.windowRect[3])
         
-        if prior_object:
-            delete_object.deleteLater()
         self._activeViewerObject = self._rootGraphicsSceneParent.scene.addWidget(self._interiorWidget)   
         self._activeViewerObject.setPos(self.windowRect[0], self.windowRect[1])
+
+    # v0.1.4 User safe viewer object removal
+    def clearViewer(self):
+        """
+        Removes an item from the view area if one is rendered.
+
+        :param self: SubApplication
+        """
+        if self._busyRendering:
+            self._callbackViewer = True
+            return
+        if self._callbackViewer:
+            self._callbackViewer = False
+        delete_object = None
+        if self._activeViewerObject != None:
+            prior_object = True
+            self.removeActiveViewer()
+            delete_object = self._activeViewerObject
+        else:
+            prior_object = False
+        if prior_object:
+            delete_object.deleteLater()
+        self._activeViewerObject = None

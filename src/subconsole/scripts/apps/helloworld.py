@@ -127,10 +127,12 @@ class HelloSubApplication(SubApplication):
         # values returned by renderText to acceptInput
         # However, renderText would need to be called asynchroniously
         # Which you can do with the built in QTimer, see help.py
-        self.ingoreInput()
+        #self.ingoreInput()
         time = self.renderText(f"\tHello, World\t!!! _____ !!! _____ !!! _____ !!! _____ !!! 000 111 Aa Bb", center=False)
         # See help.py to see how to use a timer and create sequential events.
-        self.acceptInput(time)
+        #self.acceptInput(time)
+        # Create a delay to remove the text from view.
+        self.timer.singleShot(time + 500, self.clearViewer)
        
         
         # We'll use the shell to set other

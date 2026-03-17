@@ -9,6 +9,18 @@ Recent changes are at the top.
 <br/>&emsp;*purpose*: Persistent SubApp access to terminal and prompt control, add user control and functionality
 <br/>&emsp;*location*: core/subshell.py
 
+- Added clearViewer method to SubApplication, end-dev safe method to remove an item from the view
+<br/>&emsp;*purpose*: Allows end-dev to clear view items, replaced code blocks in multiple locations
+<br/>&emsp;*location*: subapplication/subapplication.py; blocks replaced: subconsole.py + subapplication.py
+
+- SubApplication now prevents input during render events, ignoreInput no longer needed
+<br/>&emsp;*purpose*: Convenience, spam input prevention, viewer method safety
+<br/>&emsp;*location*: subapplication/subapplication.py
+
+- Usage of ignoreInput removed from HELLOWORLD and HELP SubApplication examples, this method will not
+be removed, however it's use is no longer essential and was converted to a #note
+
+- Updated documentation with changes and added example of clearViewer to HELLOWORLD
 
 ## 3/15/26:
 - Added `.github/`, containing CONTRIBUTING.md, adjust roadmap reference  

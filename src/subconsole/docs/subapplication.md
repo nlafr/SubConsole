@@ -78,6 +78,8 @@ The **renderText** method renders a string as text, and accepts newline and tab 
 
 **ignoreInput**
 
+>***As of v0.1.4 internal methods prevent input during rendering. Ignore input may be deprecated but will NOT be removed.***
+
 Ignores input from terminal. Must call **acceptInput(*time*)** or your app will *"freeze"*.
 
 >self.ignoreInput()
@@ -123,6 +125,18 @@ Each SubApplication comes with a built in **QTimer** under its own attribute *ti
 If your method expects parameters, use `lambda`:
 
 >self.timer.singleShot(1000, lambda: self.myClassMethod(param=value))
+
+### clearViewer
+The **clearViewer** method can be called to remove a rendered item from the view, or optionally passed to
+the timer's singleShot method along with a time to cause the item to disappear after the desired duration
+
+>self.clearViewer()
+
+or
+>time = self.renderText("Hello, world!")<br/>
+>self.timer.singleshot(time + 1000, self.clearViewer)
+
+The second example will render the text and it will disappear one second after rendering is complete.
 
 ### renderHTML
 
@@ -268,6 +282,8 @@ In keeping with the convention of many shells, your SubApplications can 'print' 
 ### Command Line Arguments
 
 SubApplications also have the option to accept *arguments* from the command line. The *argument* will take the place of the *flag* parameter and is accessible in the property `self.runArgument` assigned prior to **startupActions**. When you start `HELLOWOLRD` with no arguments, in the terminal output, one of the responses is "None", but if you `RUN HELLOWORLD argument` in the terminal, you will see "argument" in the output `self.echo(self.runArgument)`, making the illustration that *arguments* that aren't system *flags* are processed as raw user input, since they are entirely yours to use, and perform no native actions. Other parameters preserve their value parameter as a raw user string, such as: *Window Title, Invalid Command Response, and Welcome Message*.
+
+If using the `IGNORE` flag (or any future flags), the length of the flag plus a single space will be consumed and the remainder will be assigned to `self.runArgument`. Try `RUN HELLOWORLD IGNORE myarg` to assign *myarg* to runArgument and see it displayed in terminal.
 
 
 ## DOC_INFO
