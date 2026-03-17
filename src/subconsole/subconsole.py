@@ -206,6 +206,7 @@ class SubConsoleGUI(QMainWindow):
             # v0.1.4 clearViewer replaces previous block
             app.clearViewer()
             app._runArgument = self.sub_shell.appRunArgument
+            self.sub_shell._appRunArgument = None
             app.cleanLoad()
 
         else:
