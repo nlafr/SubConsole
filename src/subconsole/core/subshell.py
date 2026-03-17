@@ -509,6 +509,8 @@ class SubShell(QObject):
                 if handler == self.endOperationRequest: 
                     if safe_command.endswith(f"{self._consoleControlApplication}") > 0:
                         self.restoreSettings.emit()
+                        if override:
+                            return self.forwardCommand.emit(f"${self._consoleControlApplication}${safe_command}") 
                     else:
                         pass           
                 elif handler == self.uiChangeOptionRequest:
@@ -520,12 +522,12 @@ class SubShell(QObject):
                         return self.responseIssued.emit(ignore)
                 else:
                     return self.responseIssued.emit(ignore)
-        # v0.1.5 End operation overrides are converted and re-sent to SubApp for proper shutdown  
-        if handler == self.endOperationRequest:
-            if safe_command.endswith(f"{self._consoleControlApplication}"):
-                if override:
-                    return self.forwardCommand.emit(f"${self._consoleControlApplication}${safe_command}")
-                self.restoreSettings.emit()
+            # v0.1.5 End operation overrides are converted and re-sent to SubApp for proper shutdown  
+            elif handler == self.endOperationRequest:
+                if safe_command.endswith(f"{self._consoleControlApplication}"):
+                    if override:
+                        return self.forwardCommand.emit(f"${self._consoleControlApplication}${safe_command}")
+                    self.restoreSettings.emit()
 
         match handler:
             case self.endOperationRequest:
