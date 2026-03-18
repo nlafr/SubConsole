@@ -2,7 +2,7 @@
 A minimal command line interface which creates an internal *SubApplication* template for wrapping multiple CLI or PySide6 interactions into a single *shell-like* runtime.
 
 ### VERSION
-**0.1.5 Alpha Test** 
+**0.1.6 Alpha Test** 
 - Command-based UI customization
 - SubApplication API renders raw text/HTML or QWidget
 - SubApplication access to customization commands 
@@ -59,7 +59,7 @@ Windows:
 Linux/Mac:
 >python3 subconsole.py
 
-***SubConsole's frameless features may not be compatible with all window managers***, *or you may simply prefer to run SubConsole with an OS window frame*. Window movement and resize controls supported. Use SubConsole's `X` icon to ensure proper save/shutdown behavior.
+***SubConsole's frameless features may not be compatible with all window managers***, *or you may simply prefer to run SubConsole with an OS window frame*. 
 
 Use OS frame:
 >python3 subconsole.py -f

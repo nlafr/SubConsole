@@ -147,6 +147,11 @@ class SubConsoleGUI(QMainWindow):
         newsize = (new.width(), new.height())
         self.main_window.calculateWindow(newsize)
 
+    # v0.1.6 Add framed support for save on shutdown - omits terminal response
+    def closeEvent(self, event):
+        self.saveSettings(shutdown=True)
+        event.ignore()
+        
 
     @ Slot(str)
     def setThemeTitle(self, title):
