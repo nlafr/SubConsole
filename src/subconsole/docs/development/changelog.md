@@ -3,6 +3,12 @@ Record of noteworthy package changes.
 
 Recent changes are at the top.
 
+## 3/18/26
+- Save settings support added to OS framed usage: `subconsole.py -f`. Settings are now saved on shutdown when using the OS window frame's `X` icon, however the terminal does not echo the save settings messages as it would with the applications graphical implementation of `x` or using `end subconsole` from the command line.
+<br/>&emsp;*purpose*: Ensure proper app shutdown functionality when using OS window frame.
+<br/>&emsp;*location*: subconsole.py
+
+
 ## 3/17/26
 - End operation override commands are now re-sent to SubApplication as a regular command to ensure proper SubApplication shutdown behavior, which previously would malfunction with END type overrides
 - Blocks made redundant or ineffective by this change have been removed

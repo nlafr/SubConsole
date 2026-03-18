@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "subconsole"
-version = "0.1.5 Alpha Test"
+version = "0.1.6 Alpha Test"
 description = "Extendable shell like GUI for collecting command line interactions"
 authors = [{ name = Nathan LaFrazia, email = "nlafr.dev@proton.me" }]
 license = "GPL v3"

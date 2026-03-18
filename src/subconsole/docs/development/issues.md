@@ -14,9 +14,7 @@ Issues can be:
 - Issue Origin: Window Drag fails with frameless application in Ubuntu OS. 
 Qt Frameless / GNOME compatibility issues are known.
 - Status: *Adapted* application to support "-f" command line argument
-which will use OS window frame. Frameless version icons are not removed and
-their usage is preferred over the OS icons, as the OS "X" icon exits the application
-without following SubConsole's internal shutdown protocol.
+which will use OS window frame. Frameless version icons are not removed.
 
 **Usage**:
 > python3 subconsole.py -f
