@@ -34,10 +34,10 @@ GNOME supports window opacity.
 
 <br/>
 
-## Upper Margin Graphics - Terminal / Console Ratio = 1 - `open`
+## Upper Margin Graphics - Terminal / Console Ratio = 1 - `closed`
 - Issue Origin: Initializing SubConsole with the terminal or console ratio set to 1
 causes an upper margin graphics offset.
-- Status: This issue is *open* and a correction plan has not been formed.
+- Status: This issue has been corrected in the ui/interface scope.
 
 <br/>
 

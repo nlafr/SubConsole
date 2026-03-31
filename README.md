@@ -2,7 +2,7 @@
 A minimal command line interface which creates an internal *SubApplication* template for wrapping multiple CLI or PySide6 interactions into a single *shell-like* runtime.
 
 ### VERSION
-**0.1.6 Alpha Test** 
+**0.1.7 Alpha Test** 
 - Command-based UI customization
 - SubApplication API renders raw text/HTML or QWidget
 - SubApplication access to customization commands 
@@ -85,7 +85,7 @@ Despite being restricted to your screen's aspect ratio, much of the rest of the 
 
 
 ## Who's This For?
-To be perfectly honest, this project was designed to suit the needs and desires of it's author- a **Python programmer** who wanted to find a better **option for navigating between command-line programs**, and avoid the monotony and bloat of creating a flock of modules and virtual environments, each to support a simple command-line interaction. Reasoning against this, it seemed far more practical to create **a GUI that is essentially a CLI, and provides a means for scripting seperate and unique interactions within this interface**. Not only does this simplify summoning the desired interaction to a simple RUN command, but it conveniently **funnels all of your dependencies into one root environment**, stopping the prolific spread of virtual environments. In addition, your single virtual environment can be **activated from your native shell**, allowing you to run the GUI and your interactions **without the need for your code editor**. 
+SubConsole was created to collect a variety of **command-line and GUI** projects into a **single virtual environment and interface**. The shell-like interface and SubApplication class were designed to suit the creation of **customized toolkits** and provide a simple means for scripting interactions and responses from the interface. This intends to provide an **alternative to creating command-line modules for interactive tasks** as well as **consolidate virtual environments** by creating interactive projects within a single multi-use interface. 
 
 **Student use was heavily considered** when designing the SubApplication class, as well as its inteaction with the SubConsole Shell, which allows the SubApplication to control the user interface. All efforts were made to construct an exemplary architecture that extends to an **introductary-level API** with plenty of **room to grow to advanced features** inside a versatile interface framework (**Qt**). The project's **small scale and relative simplicity** of startup also makes SubConsole a candidate platform for classroom or **small group repositories**.
 

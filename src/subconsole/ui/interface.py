@@ -195,8 +195,12 @@ class ConsoleWindow(QGraphicsView):
         self.top_interior = 2 * self.border_width
         self.bottom_interior = self.console_top
         self.console_bottom = self.window_height - 2 * self.border_width + pad
+        # 0.1.7 Add 'top' (y_zero) to adjust for top margin graphics on full_console_init
         if not self.full_console_init:
             self.console_bottom += 2
+            top = 0
+        else:
+            top = -2
 
         self.console_division.setLine(
             0, self.window_height - self.console_height, self.right_interior, 
@@ -204,11 +208,11 @@ class ConsoleWindow(QGraphicsView):
         )
         self.console_division.setPen(self.border_pen)
         self.top_border.setLine(
-            0, 0, self.right_interior, 0
+            0, top, self.right_interior, top
         )
         self.top_border.setPen(self.border_pen)       
         self.left_border.setLine(
-            0, 0, 0, self.console_bottom
+            0, top, 0, self.console_bottom
         )
         self.left_border.setPen(self.border_pen)       
         self.bottom_border.setLine(
@@ -241,7 +245,7 @@ class ConsoleWindow(QGraphicsView):
             half, self.console_top + focuszone, self.right_interior - self.border_width, 
             self.console_height - 2 * self.border_width - half - 1
         )
-        self.window_drag.setPos(0 - half, 0 - half)
+        self.window_drag.setPos(0 - half, top - half)
         close = self.close_button.boundingRect().width()
         full = self.full_screen_button.boundingRect().width()
         mini = self.minimize_button.boundingRect().width()
@@ -251,9 +255,9 @@ class ConsoleWindow(QGraphicsView):
             self.right_interior - self.interior_side_margin * 2 - close,
             self.bottom_interior - self.border_width * 2
         )
-        self.close_button.setPos(self.window_width - close - half, 0 - half)
-        self.full_screen_button.setPos(self.window_width - (close + full) - half, 0 - half)
-        self.minimize_button.setPos(self.window_width - (close + full + mini) - half, 0 - half)
+        self.close_button.setPos(self.window_width - close - half, top - half)
+        self.full_screen_button.setPos(self.window_width - (close + full) - half, top - half)
+        self.minimize_button.setPos(self.window_width - (close + full + mini) - half, top - half)
         if self.background_color.rgb() == self.theme_color.rgb():
             self.window_drag.setDefaultTextColor(self.text_color)
             self.close_button.setDefaultTextColor(self.text_color)
